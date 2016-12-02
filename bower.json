@@ -1,0 +1,23 @@
+{
+  "name": "deko-dash",
+  "version": "1.0.0",
+  "description": "\n    \n    \n    \n  ",
+  "main": "deko-dash.html",
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "dependencies": {
+    "paper-material": "PolymerElements/paper-material",
+    "paper-fab": "PolymerElements/paper-fab",
+    "firebase-ui-auth": "marcus7777/firebase-ui-auth",
+    "text-avatar": "marcus7777/text-avatar",
+    "mdl-template-dash": "marcus7777/mdl-template-dash",
+    "deko-cards": "Hi9Here/deko-cards",
+    "polymer": "^1.7.0",
+    "input-image": "marcus7777/input-image"
+  },
+  "resolutions": {
+    "iron-icon": "^1.0.0"
+  }
+}

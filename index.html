@@ -1,0 +1,75 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>Admin Deko</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/bower_components/mdl-template-dash/mdl-template-dash.html">
+    <link rel="import" href="/bower_components/firebase-ui-auth/firebase-ui-auth.html">
+    <link rel="import" href="/bower_components/paper-material/paper-material.html">
+    <link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+    <link rel="import" href="/bower_components/iron-icons/hardware-icons.html">
+    <link rel="import" href="/bower_components/iron-icons/social-icons.html">
+    <link rel="import" href="/bower_components/iron-icons/av-icons.html">
+    <link rel="import" href="/bower_components/iron-icons/editor-icons.html">
+    <link rel="import" href="/bower_components/iron-icons/image-icons.html">
+    <link rel="import" href="/bower_components/iron-icons/communication-icons.html">
+    <link rel="import" href="/bower_components/iron-icons/notification-icons.html">
+    <link rel="import" href="/bower_components/iron-icons/device-icons.html">
+    <link rel="import" href="/bower_components/paper-fab/paper-fab.html">
+    <link rel="import" href="/bower_components/deko-cards/deko-cards.html">
+    <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+    <script>
+      var config = {
+        apiKey: "AIzaSyA7bHZD1jlPsPZdYciJV-79wAaSoP-ADNw",
+        authDomain: "deko-dash.firebaseapp.com",
+        databaseURL: "https://deko-dash.firebaseio.com",
+        storageBucket: "deko-dash.appspot.com",
+        messagingSenderId: "777159846656"
+      }
+      firebase.initializeApp(config);
+    </script>
+  </head>
+  <body>
+    <style is="custom-style" >
+      img {max-width:100%;};
+    </style>
+    <template is="dom-bind" id="app">
+      <mdl-template-dash app-title="Admin Deko" photo="[[photo]]" user="{{user}}" on-logout="logout" pages='[[pages]]' back-menu="menu">
+        <home-page>
+          <deko-cards path="[[cardsUrl]]" ></deko-cards>
+        </home-page>
+        <login-page>
+          <paper-material class="card" elevation="1">
+            <firebase-ui-auth id="auth" user="{{user}}" photo="{{photo}}" get-photo width-Photo="48" sign-In='["GoogleAuthProvider","EmailAuthProvider"]'></firebase-ui-auth>
+          </paper-material>
+        </login-page>
+      </mdl-template-dash>
+    </template>
+    <script>
+      (function (document) {
+        'use strict';
+        
+        var app = document.querySelector('#app')
+        app.pages = [
+          {Label: "Home", Icon: "home", Description: "The default home location, which will display system cards"},
+          ""
+        ]
+        
+        var connectedRef = firebase.database().ref(".info/connected")
+        
+        connectedRef.on("value", function(snap) {
+          if (snap.val() === true) {
+            console.log("connected") 
+            app.cardsUrl = "deko-data"
+          } else {
+            console.log("not connected")
+          }
+        })
+        app.logout = function() { app.$.auth.signOut() }
+      })(document);
+    </script>
+  </body>
+</html>
