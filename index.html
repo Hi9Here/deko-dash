@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/bower_components/card-info-link-input/card-info-link-input.html">
     <link rel="import" href="/bower_components/mdl-template-dash/mdl-template-dash.html">
     <link rel="import" href="/bower_components/firebase-ui-auth/firebase-ui-auth.html">
     <link rel="import" href="/bower_components/paper-material/paper-material.html">
@@ -38,6 +39,9 @@
     </style>
     <template is="dom-bind" id="app">
       <mdl-template-dash app-title="Admin Deko" photo="[[photo]]" user="{{user}}" on-logout="logout" pages='[[pages]]' back-menu="menu">
+        <add-page>
+          <card-info-link-input label="Link (url)"> </card-info-link-input>
+        </add-page>
         <home-page>
           <deko-cards path="[[cardsUrl]]" ></deko-cards>
         </home-page>
@@ -55,6 +59,7 @@
         var app = document.querySelector('#app')
         app.pages = [
           {Label: "Home", Icon: "home", Description: "The default home location, which will display system cards"},
+          {Label: "Add", Icon: "add", Description: ""},
           ""
         ]
         
