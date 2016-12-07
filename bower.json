@@ -15,9 +15,12 @@
     "mdl-template-dash": "marcus7777/mdl-template-dash",
     "deko-cards": "Hi9Here/deko-cards",
     "polymer": "^1.7.0",
-    "input-image": "marcus7777/input-image"
+    "input-image": "marcus7777/input-image",
+    "card-info-link-input": "marcus7777/card-info-link-input"
   },
   "resolutions": {
-    "iron-icon": "^1.0.0"
+    "iron-icon": "^1.0.0",
+    "image-base64": "193681247c",
+    "paper-input": "1d4798916a"
   }
 }
