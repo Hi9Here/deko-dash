@@ -22,6 +22,10 @@
     <link rel="import" href="/bower_components/paper-fab/paper-fab.html">
     <link rel="import" href="/bower_components/deko-cards/deko-cards.html">
     <link rel="import" href="/bower_components/deko-card-container/deko-card-container.html">
+    <link rel="import" href="/bower_components/app-layout/app-toolbar/app-toolbar.html">
+    <link rel="import" href="/bower_components/paper-button/paper-button.html">
+    <link rel="import" href="/bower_components/paper-value-check/paper-value-check.html">
+
     <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
     <script>
       var config = {
@@ -44,8 +48,15 @@
           <card-info-link-input label="Link (url)"> </card-info-link-input>
         </add-page>
         <home-page>
-          <deko-cards path="[[cardsUrl]]" ></deko-cards>
+          <deko-cards 
+          use-templates='{"link":{"input":"<paper-input label=\"link\"><\/paper-input>\r\n<input-image label=\"image\" width=\"100\" max-height=\"100\" ><\/input-image><paper-input label=\"title\"><\/paper-input><paper-input label=\"desc\"><\/paper-input><paper-value-check label=\"checked\"></paper-value-check>","icon":"bookmark","cardType":"link-display"}}' path="[[cardsUrl]]" ></deko-cards>
         </home-page>
+        <Unchecked-page>
+          <deko-cards
+            by-child="checked"
+            use-templates='{"link":{"input":"<paper-input label=\"link\"><\/paper-input>\r\n<input-image label=\"image\" width=\"100\" max-height=\"100\" ><\/input-image><paper-input label=\"title\"><\/paper-input><paper-input label=\"desc\"><\/paper-input><paper-value-check label=\"checked\"></paper-value-check>",  "icon":"bookmark","cardType":"link-display"}}' path="[[cardsUrl]]" ></deko-cards>
+            no pager  
+        </Unchecked-page>
         <login-page>
           <paper-material class="card" elevation="1">
             <firebase-ui-auth id="auth" user="{{user}}" photo="{{photo}}" get-photo width-Photo="48" sign-In='["GoogleAuthProvider","EmailAuthProvider"]'></firebase-ui-auth>
@@ -61,9 +72,13 @@
         app.pages = [
           {Label: "Home", Icon: "home", Description: "The default home location, which will display system cards"},
           {Label: "Add", Icon: "add", Description: ""},
-          ""
+          "",
+          {Label: "Unchecked", Icon: "check-box-outline-blank", Description: ""},
         ]
         
+        app.addDeck = function() {
+          
+        }
         var connectedRef = firebase.database().ref(".info/connected")
         
         connectedRef.on("value", function(snap) {

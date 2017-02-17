@@ -16,11 +16,18 @@
     "deko-cards": "Hi9Here/deko-cards",
     "polymer": "^1.7.0",
     "input-image": "marcus7777/input-image",
+    "paper-value-check":"Hi9Here/paper-value-check",
     "card-info-link-input": "marcus7777/card-info-link-input"
   },
   "resolutions": {
     "iron-icon": "^1.0.0",
     "image-base64": "193681247c",
-    "paper-input": "1d4798916a"
+    "paper-input": "1d4798916a",
+    "paper-item": "1.2.1",
+    "iron-a11y-keys-behavior": "~1.0.5",
+    "iron-flex-layout": "1.3.1"
+  },
+  "devDependencies": {
+    "web-component-tester": "^5.0.0"
   }
 }
